@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1589153361776,
+  "timestamp": 1589153471420,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -70,7 +70,7 @@
     "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "bf0e58d988126c2e61dc3fbe8e757014ff4382ff",
+    "/index.html": "d6c6354f503bc22c08d216f784bae1be9b465015",
     "/main-es2015.47f54c395609b0a043c7.js": "81f93c38bbd9a0ebc53fffdf17d9fae854f97e32",
     "/main-es5.47f54c395609b0a043c7.js": "cce343b1464c2b7c96fa6c17fb846f9340a5b0a6",
     "/manifest.webmanifest": "286a848d4cf9efabdb520b9f97a05076e3080a1f",
