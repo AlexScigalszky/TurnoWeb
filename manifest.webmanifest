@@ -5,7 +5,7 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/index.html",
+  "start_url": "https://alexscigalszky.github.io/TurnoWeb/index.html",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -22,12 +22,6 @@
     {
       "src": "assets/icons/icon-128x128.png",
       "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-144x144.png",
-      "sizes": "144x144",
       "type": "image/png",
       "purpose": "maskable any"
     },
