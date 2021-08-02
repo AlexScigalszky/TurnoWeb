@@ -1,0 +1,141 @@
+<div>
+
+    <!-- During registration -->
+    <section *ngIf="!urlGenerateForCompany">
+
+        <header class="mb-3 border-bottom clearfix">
+            <h1 class="h1 float-md-left">{{ companyName ? companyName : 'Cargar comercio' }}</h1>
+            <button type="submit" class="btn btn-success float-md-right" (click)="onSubmit()">Guardar</button>
+        </header>
+        
+
+        <form *ngIf="model">
+
+            <fieldset>
+                <h4>Detalles</h4>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="name">Nombre del Comercio</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" required [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="address">Dirección</label>
+                        <input type="text" class="form-control" id="address" [(ngModel)]="model.address" name="address" required [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <h4>Horario de antención</h4>
+
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="weekdays">Días de Semana</label>
+                        <ng-select class="browser-default" placeholder="Seleccionar" [closeOnSelect]="false" [(ngModel)]="model.weekdays" name="weekdays" [multiple]="true" [ngModelOptions]="{standalone: true}">
+                            <ng-option [value]="0">Lunes</ng-option>
+                            <ng-option [value]="1">Martes</ng-option>
+                            <ng-option [value]="2">Miércoles</ng-option>
+                            <ng-option [value]="3">Jueves</ng-option>
+                            <ng-option [value]="4">Viernes</ng-option>
+                            <ng-option [value]="5">Sábado</ng-option>
+                            <ng-option [value]="6">Domingo</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-group">
+                            <label for="timeOfTurns">Duración del Turno (en minutos)</label>
+                            <input type="number" class="form-control" id="timeOfTurns" [(ngModel)]="model.timeOfTurns" name="timeOfTurns" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row" *ngFor="let item of model.businessHours; index as i">
+                            <div class="form-group col-sm-6">
+                                <label for="from">Desde</label>
+                                <input type="time" data-date="" data-date-format="HH:ss" class="form-control" [(ngModel)]="item.from" name="from" [ngModelOptions]="{standalone: true}">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="to">Hasta</label>
+                                <input type="time" data-date="" data-date-format="HH:ss" class="form-control" [(ngModel)]="item.to" name="to" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col bottom-buttons">
+                        <button class="btn btn-secondary" (click)="addNewBusinessHour()" *ngIf="model.businessHours.length < 2">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-secondary" name="plus" (click)="removeNewBusinessHour()" *ngIf="model.businessHours.length > 1">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <h4>Observaciones</h4>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="sr-only" for="notes">Observaciones</label>
+                        <textarea class="form-control" rows="2" placeholder="Notas para tus clientes" [(ngModel)]="model.notes" name="notes" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+    </section>
+
+
+    <!-- After registration -->
+    <section *ngIf="urlGenerateForCompany" class="text-center">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 mx-auto">
+                <div class="alert alert-info" role="alert">
+                    Imprimí y colocá este QR en tu local para que tus clientes saquen turno.
+                </div>
+                <div #qrCodeCreated id="print-section" class="card">
+                    <div class="card-body">
+                        <h1>{{ model.name }}</h1>
+
+                        <qrcode [qrdata]="urlGenerateForCompany" [width]="256" [errorCorrectionLevel]="'H'" [elementType]="'url'" class="mt-5"></qrcode>
+
+                        <div *ngIf="model.businessHours && model.businessHours.length > 0">
+                            <p>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span *ngFor="let item of model.businessHours; index as i">
+                                    {{ (i > 0 && model.businessHours.length > 1) ? 'y': '' }}
+                                    {{ item.from }} a {{ item.to }} hs.
+                                </span>
+                            </p>
+                        </div>
+
+                        <p *ngIf="timeOfTurns">{{ timeOfTurns }}</p>
+
+                        <div class="btn-group-margin" role="group">
+                            <button class="btn btn-secondary" printTitle="MyTitle" printSectionId="print-section" ngxPrint>Imprimir</button>
+                            <button class="btn btn-secondary" (click)="screenshot()">Descargar</button>
+                        </div>
+
+                        <p class="text-left mt-3 mb-0"><strong>Notas</strong> {{ model.notes }}</p>
+                    </div>
+                </div>
+                <a class="btn btn-primary btn-lg btn-block mt-3" [routerLink]="'/companies/my/'+ generatedId">Atender</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<div id="download" [hidden]="true">
+    <img #canvas>
+    <a #downloadLink></a>
+</div>

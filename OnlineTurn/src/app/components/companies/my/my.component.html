@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-8 mx-auto">
+
+        <div *ngIf="model">        
+            <article class="card mb-3">
+                <div class="card-body text-center">
+                    <h1 class="card-title">{{ model.name }}</h1>
+                    <h2 class="card-subtitle text-muted">Turno Actual </h2>
+                    <h2 class="display-1">{{ model.current }}</h2>
+                    <p class="mt-3">
+                        Turnos entregados <strong class="text-primary">{{ model.next }}</strong>
+                    </p>
+
+                    <h5>Código de Confirmación <span class="badge badge-secondary">{{ confirmationCode }}</span></h5>
+
+                    <div class="row">
+                        <div *ngIf="model.current >= model.next" class="col">
+                            A la espera de nuevos turnos
+                        </div>
+                    </div>
+
+                    <p class="mt-3 mb-0">
+                        Válido durante el {{ toDate(model.date) | date: 'dd/MM/yyyy' }}
+                    </p>
+                </div>
+            </article>
+
+            <button class="btn btn-primary btn-block btn-lg" (click)="next()" *ngIf="model.current < model.next">SIGUIENTE TURNO</button>
+            <a class="btn btn-secondary btn-block btn-lg" [routerLink]="'/companies/' + id + '/tiket'">DAR TURNO</a>
+        </div>
+
+
+        <div class="card" *ngIf="!model">
+            <div class="card-body text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<swal #nextSwal title="{{ nextCode }}" text="¿Coinciden los códigos?" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="next()"></swal>
+<!-- <swal #codeSwal [swalOptions]="swalOptions"></swal> -->

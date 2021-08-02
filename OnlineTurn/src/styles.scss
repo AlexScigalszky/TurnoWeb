@@ -1,0 +1,162 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables.scss";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// BIG BUTTON
+// Prevent scrollbars to appear when waves go out of bound
+.sonar-wrapper {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  padding: 8rem 0;
+}
+
+/* The circle */
+.sonar-emitter {
+  position: relative;
+  margin: 0 auto;
+  width: 275px;
+  height: 275px;
+  border-radius: 100%;
+  background-color: theme-color("primary") !important;
+}
+
+// the 'wave', same shape and size as its parent
+.sonar-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: theme-color("secondary") !important;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+// Animate! NOTE: add browser prefixes where needed.
+.sonar-wave {
+  animation: sonarWave 2s linear infinite;
+}
+
+@keyframes sonarWave {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.btn-ticket {
+  font-size: 3em !important;
+}
+
+.bottom-buttons {
+  position: relative;
+}
+
+.bottom-buttons .btn {
+  position: absolute;
+  bottom: 0px;
+}
+
+// Layout
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .container {
+    //max-width: 80%;
+  }
+}
+
+main {
+  &.container {
+    padding-top: 100px;
+  }
+}
+
+// Search Form
+#search-inline {
+  input {
+    margin-right: 0 !important;
+    width: 250px;
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    border-right: 0;
+  }
+  @media (max-width: 767px) {
+    input {
+      width: calc(100% - 41px);
+    }
+  }
+  .btn {
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+  }
+}
+
+// Section header
+@media (max-width: 767px) {
+  header.border-bottom {
+    padding-bottom: 10px;
+  }
+}
+
+// Item Card
+.card-header {
+  h5 {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+}
+
+#my-company {
+  .card-header {
+    h5 {
+      width: calc(100% - 24px);
+    }
+  }
+}
+#public-company {
+  .card-header {
+    h5 {
+      width: 100%;
+    }
+  }
+}
+
+// Button
+.btn-group-margin {
+  .btn + .btn {
+    margin-left: 5px;
+  }
+}
+
+// company-item
+.company-item {
+  &+article {
+    margin-top: 20px;
+  }
+  @media (min-width: 768px) {
+    &+article:nth-child(-n+2) {
+      margin-top: 0px;
+    }
+  }
+  @media (min-width: 992px) {
+    &+article {
+      margin-top: 40px;
+    }
+    &+article:nth-child(-n+3) {
+      margin-top: 0px;
+    }
+  }
+  @media (min-width: 1366px) {
+    &+article:nth-child(-n+4) {
+      margin-top: 0px;
+    }
+  }
+}

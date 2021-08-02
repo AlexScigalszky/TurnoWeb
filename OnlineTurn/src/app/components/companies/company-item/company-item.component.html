@@ -1,0 +1,22 @@
+<div class="card h-100" *ngIf="model">
+    <div class="card-header">
+        <h5 class="float-left text-truncate" title="{{ model.name }}">{{ model.name }}</h5>
+        <!--
+        <h4 class="badge badge-success float-right" *ngIf="isOpen">Abierto</h4>
+        <h4 class="badge badge-danger float-right" *ngIf="!isOpen">Cerrado</h4>-->
+    </div>
+
+    <div class="card-body">
+        <ul class="list-unstyled mb-0">
+            <li>Turno Actual <strong class="text-primary">{{ model.current }}</strong></li>
+            <li>Turnos Entregados <strong class="text-primary">{{ turnsDelivered }}</strong></li>
+        </ul>
+        <div class="card-text">
+            <!--<p>{{ toDate(model.date) | date : 'dd-MM-yyyy' }}</p> -->
+        </div>
+        <div class="card-text pt-3">
+            <a *ngIf="!isOpen" [routerLink]="'/companies/'+ model.id + '/tiket'" class="btn btn-outline-dark btn-block">CERRADO</a>
+            <a *ngIf="isOpen" [routerLink]="'/companies/'+ model.id + '/tiket'" class="btn btn-primary btn-block">SACAR TURNO PARA HOY</a>
+        </div>
+    </div>
+</div>

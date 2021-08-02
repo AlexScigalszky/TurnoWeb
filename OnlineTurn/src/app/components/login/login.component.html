@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <h1 class="display-1 p-3 pb-5">Ingresar</h1>
+            <form>
+                <div class="form-group">
+                    <label for="name">Correo Electrónico</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="model.email" required [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Contraseña <small>(más de 8 caracteres)</small></label>
+                    <input type="password" class="form-control" id="address" [(ngModel)]="model.password" required [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group" *ngIf="!isLoging">
+                    <label for="address">Confirmar Contraseña </label>
+                    <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="model.confirmPassword" required [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <p *ngIf="errorMessage">{{ errorMessage }}</p>
+                <div class="form-group text-center" *ngIf="isLoging">
+                    <button type="submit" class="btn btn-primary" (click)="signIn()">Ingresar</button>
+                </div>
+                <div class="form-group text-center" *ngIf="isLoging">
+                    <a (click)="toggleLoging()" class="btn btn-link">Registrarme</a>
+                </div>
+                <div class="form-group text-center" *ngIf="!isLoging">
+                    <button type="submit" class="btn btn-success" (click)="createUser()">Registrarse</button>
+                </div>
+                <div class="form-group text-center" *ngIf="!isLoging">
+                    <a (click)="toggleLoging()" class="btn btn-link">Ingresar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

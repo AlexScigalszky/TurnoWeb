@@ -1,0 +1,33 @@
+<section id="my-company" *ngIf="user">
+    <header class="mb-3 border-bottom clearfix">
+        <h1 class="h1 float-left">Mis Comercios</h1>
+        <app-company-item-register></app-company-item-register>
+    </header>
+    
+    <div class="row">
+        <article class="company-item col-md-6 col-lg-4 col-xxl-3" *ngFor="let company of myCompanies">
+            <app-company-item-seller [company]="company" [user]="user"></app-company-item-seller>
+        </article>
+    </div>
+</section>
+
+<section id="public-company" class="mt-5">
+    <header class="mb-3 border-bottom clearfix">
+        <h1 class="h1 float-md-left">Comercios</h1>
+        <form id="search-inline" class="form-inline float-md-right" (submit)="onSearch()">
+
+            <input type="search" class="form-control mr-sm-2" id="search" [(ngModel)]="searchText" name="search" required [ngModelOptions]="{standalone: true}" placeholder="Buscar comercio" aria-label="Nombre del comercio">
+
+            <button class="btn btn-success" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+    </header>
+
+    <div class="row">
+        <article class="company-item col-md-6 col-lg-4 col-xxl-3" *ngFor="let company of otherCompaniesFiltered; index as i">
+            <app-company-item [company]="company" [user]="user"></app-company-item>
+        </article>
+    </div>
+
+</section>

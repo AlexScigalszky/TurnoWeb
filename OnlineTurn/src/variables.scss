@@ -1,0 +1,41 @@
+// Typography
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+$font-family-base: "Poppins";
+$font-weight-bold: 600;
+$headings-font-weight: $font-weight-bold;
+$enable-responsive-font-sizes: true;
+
+// Layout
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1366px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1340px,
+);
+
+// Colors
+$primary: #E91E63 !default;
+$secondary: #E0E0E0 !default;
+
+// $success:       $green !default;
+// $info: #caebf2 !default;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
+// $light:         $gray-100 !default;
+
+$dark: #757575 !default;
+
+// Grid
+$grid-gutter-width: 40px !default;
+
+@import "bootstrap";
